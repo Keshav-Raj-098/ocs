@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Description
+This is a Next.js-based web application that integrates both frontend and backend functionalities in a single project. It uses PostgreSQL with Prisma ORM and features an API that conditionally fetches data based on user roles:
+- **Admin:** Can view all records.
+- **Regular User:** Can view only their own data.
 
-## Getting Started
+## Live Demo
+The project is deployed on Vercel and can be accessed at:
+🔗 [OCS Live](http://ocs-roan.vercel.app/)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+✅ Next.js (Full-Stack Application)
+✅ PostgreSQL with Prisma ORM
+✅ Role-based API responses
+✅ Deployed on Vercel
+
+---
+
+## Installation
+
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/your-username/ocs.git
+cd ocs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **2. Install Dependencies**
+```sh
+npm install  # or yarn install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### **3. Set Up Environment Variables**
+Create a `.env` file in the root directory and add the necessary configurations:
+```env
+DATABASE_URL="your_postgresql_database_url"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **4. Run Database Migrations**
+```sh
+npx prisma migrate dev
+```
 
-## Learn More
+### **5. Start the Development Server**
+```sh
+npm run dev  # or yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+The app will be available at `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API Endpoint
+The project contains an API that conditionally fetches data:
 
-## Deploy on Vercel
+### **GET `/api/data`**
+- **Admin Role:** Returns all records.
+- **Regular User:** Returns only the user’s own records.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Example Request:
+```sh
+GET /api/users
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example Response (Admin):
+```json
+[
+  { "userId": "user1", "password_hash": "482c811da5d5b4bc6d497ffa98491e38","role": "user" },
+  { "userId": "user2", "password_hash": "5dkb611da5d5b4bc6d497ffa98491e38","role": "user" }
+]
+```
+
+Example Response (Regular User):
+```json
+[
+   { "userId": "admin1", "password_hash": "5fgfgr8efe5d5b4bc6d497ffa98491e38","role": "admin" }
+]
+```
+
+## Contact
+For any inquiries, feel free to reach out:
+📧 Email: keshavraj09898@gmail.com
